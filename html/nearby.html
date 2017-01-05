@@ -156,18 +156,19 @@
 	          pageSize: 10,
 	          pageIndex: 1,
 	          extensions: 'base',
-	          type: '200300|200301|200302|200303'
+//	          type: '200300|200301|200302|200303'
+	          type: '酒店'
 	        });
-	        placeSearch.searchNearBy("卫生间", pos, 2000, function(status, result) {
+	        placeSearch.searchNearBy("酒店", pos, 2000, function(status, result) {
 	          if (status === 'complete' && result.info === 'OK') {
 	            var pois = result.poiList.pois;
 	            pois.forEach(function(poi){
 	              var divStr = '<div class="makerStyle">' + poi.distance + '米</div>';
-	              var info = '<div class="infoWindow"><div class="info_title">卫生间</div>'
+	              var info = '<div class="infoWindow"><div class="info_title">酒店</div>'
 	                + '<div class="info_name">名称: ' + poi.name+ '</div>'
 	                + '<div class="info_dis">距您: ' + '<span class="dis_span">' + poi.distance + '米</span>' + '</div>'
 	                + '<div class="info_address">地址: ' + poi.address+ '</div>'
-	                + '<div class="info_type">类型: ' + (poi.type || '卫生间')+ '</div>'
+	                + '<div class="info_type">类型: ' + (poi.type || '酒店')+ '</div>'
 	                + '<div class="info_arrow"></div>';
 	              if(isiPhone && isiPhone.length){
 	                info +='<div class="info_close" ontouchstart="_closeInfoWindow()"><img src="close_blue.png" style=""/></div>'

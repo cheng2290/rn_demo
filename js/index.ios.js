@@ -24,6 +24,8 @@ import MyApiNative from './MyApiNative';
 import QaPage from './QaPage';
 import ModelComponent from './ModelComponent';
 
+import TWebView from './tWebView';
+
 class ContainerView extends Component {
     constructor(props) {
         super(props);
@@ -37,6 +39,8 @@ class ContainerView extends Component {
                 {title:'MyApiNative(自定义API Native组件)',component:MyApiNative},
                 {title:'增员列表',component: QaPage},
                 {title:'Model',component: ModelComponent},
+                {title:'JS地图',component:TWebView}
+
             ])
         };
     }
@@ -67,6 +71,17 @@ class ContainerView extends Component {
     }
 
     _showDetail(component,title) {
+        let passProps = null;
+        if (title == "JS地图"){
+            passProps = {
+                isMargin: 1,
+                isNearBy: 1
+            };
+        }else {
+            passProps =  {
+                isMargin: 1
+            }
+        }
         this.props.navigator.push({
             component: component,
             title: title,
