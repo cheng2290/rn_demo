@@ -14,10 +14,6 @@ class SwiperView extends Component{
         return (
             <Swiper style={styles.wrapper} showsButtons={false} autoplay={true} height={200}>
                 <View style={styles.slide1}>
-                    <View>
-                        <Text style={styles.text}>Hello Swiper</Text>
-                        <Text style={styles.text}>Hello Swiper</Text>
-                    </View>
                     <Text style={styles.text}>Hello Swiper</Text>
                 </View>
                 <View style={styles.slide2}>

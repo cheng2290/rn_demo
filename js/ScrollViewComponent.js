@@ -13,7 +13,9 @@ var NUM_ITEMS = 20;
 
 class ScrollViewComponent extends Component {
 
-
+    static navigatorStyle = {
+        tabBarHidden:true
+    };
 
     render() {
         // One of the items is a horizontal scroll view

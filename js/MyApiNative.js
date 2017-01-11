@@ -8,16 +8,19 @@ import {
     requireNativeComponent
 } from 'react-native';
 
-var DeviceExtension= require("NativeModules").DeviceExtension;
+// var DeviceExtension= require("NativeModules").DeviceExtension;
 
 import RCTImageTestView from './RCTImageTestView';
 
 
 
-DeviceExtension.getDynamicDimensions((error,dimensions)=>{
+/*DeviceExtension.getDynamicDimensions((error,dimensions)=>{
     console.log("----123---",dimensions);
-});
+});*/
 class MyApiNative extends Component{
+    static navigatorStyle = {
+        tabBarHidden:true
+    };
     constructor(props){
         super(props);
         this.state = {
@@ -37,12 +40,12 @@ class MyApiNative extends Component{
         );
     }
     componentDidMount(){
-        var that  = this;
+        /*var that  = this;
         DeviceExtension.getDynamicDimensions((error,dimensions)=>{
             that.setState({
                 content:"width:"+dimensions.width+"   height:"+dimensions.height+"   scale:"+dimensions.scale
             });
-        });
+        });*/
     }
 }
 module.exports = MyApiNative;

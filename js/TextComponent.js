@@ -8,6 +8,9 @@ import {
 } from 'react-native';
 
 class ContainerView extends Component {
+    static navigatorStyle = {
+        tabBarHidden:true
+    };
     constructor(props) {
         super(props);
     }

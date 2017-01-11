@@ -159,7 +159,7 @@
 //	          type: '200300|200301|200302|200303'
 	          type: '酒店'
 	        });
-	        placeSearch.searchNearBy("酒店", pos, 2000, function(status, result) {
+	        placeSearch.searchNearBy("酒店", pos, 5000, function(status, result) {
 	          if (status === 'complete' && result.info === 'OK') {
 	            var pois = result.poiList.pois;
 	            pois.forEach(function(poi){

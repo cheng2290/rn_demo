@@ -8,6 +8,16 @@ module.exports = {
     navigationHeight: 44,
     navigationBarBgColor: '#26B8F2',
     statusBarHeight: 20,
+    navigationBarStyle:{
+        navBarBackgroundColor: '#4dbce9',
+        navBarTextColor: '#ffff00',
+        navBarSubtitleTextColor: '#ff0000',
+        navBarButtonColor: '#ffffff',
+        statusBarTextColorScheme: 'light',
+        tabBarBackgroundColor: '#4dbce9',
+        tabBarButtonColor: '#ffffff',
+        tabBarSelectedButtonColor: '#ffff00'
+    },
     /*最小线宽*/
     pixel: 1 / PixelRatio.get(),
 

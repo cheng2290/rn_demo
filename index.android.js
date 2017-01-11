@@ -4,7 +4,9 @@
  * @flow
  */
 
-import React, {Component} from 'react';
+
+import App from './app';
+/*import React, {Component} from 'react';
 import {
     AppRegistry,
     StyleSheet,
@@ -95,4 +97,7 @@ const styles = StyleSheet.create({
     },
 });
 
-AppRegistry.registerComponent('AwesomeProject', () => AwesomeProject);
+AppRegistry.registerComponent('AwesomeProject', () => AwesomeProject);*/
+
+
+

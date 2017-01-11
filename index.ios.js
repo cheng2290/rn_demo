@@ -4,7 +4,7 @@
  * @flow
  */
 
-import React, { Component } from 'react';
+/*import React, { Component } from 'react';
 import {
   AppRegistry,
   StyleSheet,
@@ -19,13 +19,6 @@ export default class AwesomeProject extends Component {
       <View style={styles.container}>
         <Text style={styles.welcome}>
           Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.ios.js
-        </Text>
-        <Text style={styles.instructions}>
-          Press Cmd+R to reload,{'\n'}
-          Cmd+D or shake for dev menu
         </Text>
       </View>
     );
@@ -51,4 +44,5 @@ const styles = StyleSheet.create({
   },
 });
 
-AppRegistry.registerComponent('AwesomeProject', () => AwesomeProject);
+AppRegistry.registerComponent('AwesomeProject', () => AwesomeProject);*/
+import App from './app';

@@ -19,15 +19,18 @@ import TWebView from './tWebView';
 import LoadMoreFooter from './components/LoadMoreFooter';
 import GiftedListView from 'react-native-gifted-listview';
 import Swiper from 'react-native-swiper';
+import LoadingView from './components/LoadingView';
 
 const HOST = "https://www.zuihuibao.cn";
 
 export default class QaPage extends Component {
+
     constructor(props) {
         super(props);
         let ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 != r2});
         this.state = {
             index:0,
+            isLoading: false,
             isAllLoaded:false,
             isRefreshing: false,
             isLoadingMore: false,
@@ -39,9 +42,13 @@ export default class QaPage extends Component {
     }
 
     render() {
+        if (this.state.isLoading) {
+            return <LoadingView netError={this.state}/>;
+        }
         return (
 
             <View style={styles.container}>
+
 
                 <ListView
                     enableEmptySections={true}
@@ -134,7 +141,11 @@ export default class QaPage extends Component {
             </View>
         );
     }
-
+    _isShowLoading(isLoading) {
+        this.setState({
+            isLoading: isLoading
+        });
+    }
     _onScroll() {
         console.log("----1233");
     }
@@ -210,7 +221,7 @@ export default class QaPage extends Component {
     }
 
     _renderFooter() {
-        console.log("-----renderFooter-加载更多？ ", this.state.isLoadingMore, this.state.data.length, this.state.totalCount, this.state.isRefreshing);
+        console.log("-----renderFooter-加载更多？ ",this.state.index, this.state.isLoadingMore, this.state.data.length, this.state.totalCount, this.state.isRefreshing);
 
         //通过当前product数量和刷新状态（是否正在下拉刷新）来判断footer的显示
         if (this.state.data.length < 1 || this.state.isRefreshing) {
@@ -230,7 +241,10 @@ export default class QaPage extends Component {
         let self = this;
         let url = HOST + "/yiiapp/piazza/article-list?type=2&index=0&limit=10";
         let ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+
+        this._isShowLoading(true);
         Util.get(url, function (datas) {
+            self._isShowLoading(false);
             console.log("----url----", datas);
             if (datas.return_code) {
                 let obj = datas.data.article_list;
@@ -248,6 +262,7 @@ export default class QaPage extends Component {
                 alert('数据异常,正在紧急修复,请耐心等待!');
             }
         }, function (err) {
+            self._isShowLoading(false);
             console.log('---error---', err);
             alert('服务异常,正在紧急修复,请耐心等待哦');
         });
@@ -260,6 +275,13 @@ export default class QaPage extends Component {
         url = HOST + url;
         console.log("------url-----", url);
         this.props.navigator.push({
+            screen: "com.WebViewComponent",
+            title: title,
+            passProps:{
+                url: url,
+            }
+        });
+        /*this.props.navigator.push({
             component: TWebView,
             title: title,
             barHintColor: '#ccffffff',
@@ -268,7 +290,7 @@ export default class QaPage extends Component {
                 url: url,
                 isMargin: 1
             }
-        });
+        });*/
     }
 }
 

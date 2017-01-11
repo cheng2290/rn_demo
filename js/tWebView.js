@@ -8,6 +8,9 @@ import {
 } from 'react-native';
 
  class TWebView extends Component{
+     static navigatorStyle = {
+         tabBarHidden:true
+     };
 	constructor(props){
 		super(props);
 		this.state = {
@@ -22,12 +25,15 @@ import {
 	//加载网络html：source={{uri:this.state.url}}
 	 //加载本地html：source={require('./../html/nearby.html')
 	render(){
-		let url = {url:this.state.url};
+        console.log("--url-1-",this.state.url);
+		let url = {url:this.state.url,method: 'GET'};
 		if(this.state.isNearBy){
 			url = require('./../html/nearby.html');
+            console.log("--url1--",url,this.state.isNearBy)
 		}else if (this.state.isWeather){
-			url = require('./../html/weather.html');
+			url = require('./../html/nearby.html');
 		}
+		console.log("--url--",url,this.state.isNearBy)
 		return(
 			<View style={styles.container}>
 				{  
@@ -41,7 +47,8 @@ import {
 			              startInLoadingState={true}
 						  javaScriptEnabled={true}
 						  domStorageEnabled={true}
-						  onError={this._loadError.bind(this)}
+                          allowsInlineMediaPlayback={true}
+                          onError={this._loadError.bind(this)}
 						  source={url}>
 			            </WebView>
 				}	

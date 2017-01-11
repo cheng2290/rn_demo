@@ -12,7 +12,8 @@ import {
     TouchableOpacity,
     ActionSheetIOS,
     KeyBoard,
-    TouchableWithoutFeedback
+    TouchableWithoutFeedback,
+    Platform
 } from 'react-native';
 import TWebView from './tWebView';
 
@@ -25,7 +26,11 @@ var ActionSheets = [
 
 const dismissKeyboard = require('dismissKeyboard');
 
+import {toastShort} from './components/ToastUtil';
 class InputTextComponent extends Component {
+    static navigatorStyle = {
+        tabBarHidden:true
+    };
     constructor(props) {
         super(props);
         this.state = {
@@ -81,14 +86,14 @@ class InputTextComponent extends Component {
                     </View>
 
                     <View style={{flex: 1, flexDirection: 'row', alignItems: 'flex-end', bottom: 15}}>
-                        <TouchableOpacity onPress={this.showActionSheet.bind(this)}>
+                        <TouchableOpacity onPress={this._showActionSheet.bind(this)}>
                             <Text style={styles.style_view_unlogin}>
                                 无法登录?
                             </Text>
                         </TouchableOpacity>
                         <View style={{flex: 1}}/>
                         <TouchableOpacity onPress={()=> {
-                            alert('正在开发中...')
+                            toastShort('正在开发中...')
                         }}>
                             <Text style={styles.style_view_register}>
                                 新用户注册
@@ -104,11 +109,11 @@ class InputTextComponent extends Component {
         let name = this.state.username;
         let pwd = this.state.password;
         if (name == null || name == '' || name == undefined) {
-            alert('用户名不能为空');
+            toastShort('用户名不能为空');
             return;
         }
         if (pwd == null || pwd == '' || pwd == undefined) {
-            alert("密码不能为空")
+            toastShort("密码不能为空")
             return;
         }
         this.props.navigator.pop();
@@ -116,27 +121,31 @@ class InputTextComponent extends Component {
 
     _showRule() {
         this.props.navigator.push({
-            component: TWebView,
+            screen: "com.WebViewComponent",
+
             title: 'QQ号规则',
             passProps: {
                 url: QQ_RULER,
-                isMargin: 1
             }
 
         });
     }
 
-    showActionSheet = () => {
-        ActionSheetIOS.showActionSheetWithOptions({
-                options: ActionSheets,
-                cancelButtonIndex: 2,
-            },
-            (buttonIndex) => {
-                if (buttonIndex !== 2)
-                    alert(ActionSheets[buttonIndex]);
-                // this.setState({clicked: ActionSheets[buttonIndex]});
-            });
-    };
+    _showActionSheet() {
+        if (Platform == 'ios') {
+             ActionSheetIOS.showActionSheetWithOptions({
+             options: ActionSheets,
+             cancelButtonIndex: 2,
+             },
+             (buttonIndex) => {
+             if (buttonIndex !== 2)
+             alert(ActionSheets[buttonIndex]);
+             // this.setState({clicked: ActionSheets[buttonIndex]});
+             });
+        }else {
+            toastShort('正在开发中...');
+        }
+    }
 }
 const styles = StyleSheet.create({
     style_image: {

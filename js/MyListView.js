@@ -19,6 +19,9 @@ import TWebView from './tWebView';
 const HOST = "https://www.zuihuibao.cn";
 
 export default class MyListView extends Component {
+    static navigatorStyle = {
+        tabBarHidden:true
+    };
     constructor(props) {
         super(props);
         let ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 != r2});

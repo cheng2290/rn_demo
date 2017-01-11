@@ -86,8 +86,15 @@ class MetuanComponent extends Component {
     }
 
     _onClick(title) {
-        let url = "https://i.meituan.com/";
+        let url = "https://www.baidu.com";
         this.props.navigator.push({
+            screen: "com.WebViewComponent",
+            title: title,
+            passProps:{
+                url: url,
+            }
+        });
+       /* this.props.navigator.push({
             component: TWebView,
             title: title,
             barHintColor: '#ccffffff',
@@ -96,7 +103,7 @@ class MetuanComponent extends Component {
                 url: url,
                 isMargin: 1
             }
-        });
+        });*/
     }
 }
 

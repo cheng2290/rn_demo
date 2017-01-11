@@ -16,15 +16,15 @@ import SwiperWithLoading from './swiperWithLoading';
 import Swiper from 'react-native-swiper';
 import MetuanComponent from './MetuanComponent';
 class ImageComponent extends Component {
+    static navigatorStyle = {
+        tabBarHidden:true
+    };
     render() {
         return (
             <ScrollView style={{flex: 1}}>
                 <SwiperView />
 
                 <MetuanComponent navigator={this.props.navigator}/>
-                <View style={{marginTop:20}}>
-                    <SwiperWithLoading/>
-                </View>
             </ScrollView>
         );
     }

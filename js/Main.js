@@ -22,24 +22,23 @@ import InputTextComponent from './InputTextComponent';
 import ScrollViewComponent from './ScrollViewComponent';
 import MyApiNative from './MyApiNative';
 import QaPage from './QaPage';
-import ModelComponent from './ModelComponent';
-
+// import ModelComponent from './ModelComponent';
+import LoadingModel from './components/LoadingModel';
+import MapComponent from './MapComponent';
 import TWebView from './tWebView';
 
-class ContainerView extends Component {
+ export default class ContainerView extends Component {
+
     constructor(props) {
         super(props);
         const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
         this.state = {
+            showLoading:false,
             dataSource: ds.cloneWithRows([
-                {title:'Text',component: TextComponent},
-                {title:'Image(美团首页)',component: ImageComponent},
-                {title:'InputText(QQ登录)',component: InputTextComponent},
-                {title:'ScrollView',component:ScrollViewComponent},
-                {title:'MyApiNative(自定义API Native组件)',component:MyApiNative},
-                {title:'增员列表',component: QaPage},
-                {title:'Model',component: ModelComponent},
-                {title:'JS地图',component:TWebView}
+                {title:'Text',component: "TextComponent"},
+                {title:'Image(美团首页)',component: "ImageComponent"},
+                {title:'InputText(QQ登录)',component: "InputTextComponent"},
+                {title:'ScrollView',component:"ScrollViewComponent"},
 
             ])
         };
@@ -70,29 +69,27 @@ class ContainerView extends Component {
         );
     }
 
+
     _showDetail(component,title) {
-        let passProps = null;
-        if (title == "JS地图"){
-            passProps = {
-                isMargin: 1,
-                isNearBy: 1
-            };
-        }else {
-            passProps =  {
-                isMargin: 1
-            }
-        }
+
         this.props.navigator.push({
+            title: title,
+            screen: "com."+component,
+            passProps:{
+                titleHide:true
+            }
+        });
+        /*this.props.navigator.push({
             component: component,
             title: title,
             navigationBarHidden: false,
-            passProps: {
+            passProps:{
                 isMargin: 1
             }
-        });
+        });*/
     }
 }
-export default  class AwesomeProject extends Component {
+ class AwesomeProject extends Component {
     render() {
         return (
             <NavigatorIOS
@@ -121,4 +118,4 @@ const styles = StyleSheet.create({
     }
 });
 
-AppRegistry.registerComponent('AwesomeProject', () => AwesomeProject);
+// AppRegistry.registerComponent('AwesomeProject', () => AwesomeProject);
